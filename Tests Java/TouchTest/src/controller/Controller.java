@@ -27,5 +27,4 @@ public class Controller {
 		touchNb.setText(Integer.toString(counter));
 	}
 	
-	
 }
