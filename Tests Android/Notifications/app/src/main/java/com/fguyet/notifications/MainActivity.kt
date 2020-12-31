@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,20 +14,33 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mNotifyManager: NotificationManager
+    private lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         notify_button.setOnClickListener { sendNotification() }
+        update_button.setOnClickListener { updateNotification() }
+        cancel_button.setOnClickListener { cancelNotification() }
 
         createNotificationChannel()
     }
 
     private fun sendNotification() {
-        val notifyBuilder = getNotificationBuilder()
-        mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build())
+        val notificationBuilder = getNotificationBuilder()
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+    }
+
+    private fun updateNotification() {
+        val image = BitmapFactory.decodeResource(resources, R.drawable.image_1)
+        val notificationBuilder = getNotificationBuilder().setStyle(
+            NotificationCompat.BigPictureStyle()
+                .bigPicture(image)
+                .setBigContentTitle("Notification updated!")
+        )
+
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
     private fun getNotificationBuilder(): NotificationCompat.Builder {
@@ -40,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         return NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
-            .setContentTitle("You've been notified!")
+            .setContentTitle("Here is a notification!")
             .setContentText("This is the notification text.")
             .setSmallIcon(R.drawable.ic_android)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -49,8 +63,10 @@ class MainActivity : AppCompatActivity() {
             .setAutoCancel(true)
     }
 
+    private fun cancelNotification() = notificationManager.cancel(NOTIFICATION_ID)
+
     private fun createNotificationChannel() {
-        mNotifyManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
@@ -61,9 +77,9 @@ class MainActivity : AppCompatActivity() {
                 enableLights(true)
                 lightColor = Color.RED
                 enableVibration(true)
-                description = "This is the description."
+                description = "This is the channel description."
             }
-            mNotifyManager.createNotificationChannel(notificationChannel)
+            notificationManager.createNotificationChannel(notificationChannel)
         }
     }
 
