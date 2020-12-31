@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var notificationManager: NotificationManager
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         notify_button.setOnClickListener { sendNotification() }
         update_button.setOnClickListener { updateNotification() }
         cancel_button.setOnClickListener { cancelNotification() }
+        setNotificationButtonStates(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
 
         createNotificationChannel()
     }
@@ -30,10 +30,13 @@ class MainActivity : AppCompatActivity() {
     private fun sendNotification() {
         val notificationBuilder = getNotificationBuilder()
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+
+        setNotificationButtonStates(isNotifyEnabled = false, isUpdateEnabled = true, isCancelEnabled = true);
     }
 
     private fun updateNotification() {
         val image = BitmapFactory.decodeResource(resources, R.drawable.image_1)
+
         val notificationBuilder = getNotificationBuilder().setStyle(
             NotificationCompat.BigPictureStyle()
                 .bigPicture(image)
@@ -41,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+
+        setNotificationButtonStates(isNotifyEnabled = false, isUpdateEnabled = false, isCancelEnabled = true);
     }
 
     private fun getNotificationBuilder(): NotificationCompat.Builder {
@@ -63,7 +68,11 @@ class MainActivity : AppCompatActivity() {
             .setAutoCancel(true)
     }
 
-    private fun cancelNotification() = notificationManager.cancel(NOTIFICATION_ID)
+    private fun cancelNotification() {
+        notificationManager.cancel(NOTIFICATION_ID)
+
+        setNotificationButtonStates(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false);
+    }
 
     private fun createNotificationChannel() {
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -83,8 +92,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun setNotificationButtonStates(isNotifyEnabled: Boolean, isUpdateEnabled: Boolean, isCancelEnabled: Boolean) {
+        notify_button.isEnabled = isNotifyEnabled
+        update_button.isEnabled = isUpdateEnabled
+        cancel_button.isEnabled = isCancelEnabled
+    }
+
+
     companion object {
         private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
         private const val NOTIFICATION_ID = 0
     }
 }
+
