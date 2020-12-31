@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4520c97f-945e-47ec-be42-13abe9d8181d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/drawable-anydpi/ic_android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/drawable-hdpi/ic_android.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/drawable-mdpi/ic_android.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/drawable-xhdpi/ic_android.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/drawable-xxhdpi/ic_android.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests Android/Notifications/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/java/com/fguyet/notifications/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/java/com/fguyet/notifications/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests Android/Notifications/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mNsyDEuzYZe6zIS4HfY6poCo1J" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4520c97f-945e-47ec-be42-13abe9d8181d" name="Default Changelist" comment="" />
+      <created>1609345635433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609345635433</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="572" y="235" key="FileChooserDialogImpl" timestamp="1609345674390">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="572" y="235" key="FileChooserDialogImpl/0.0.1500.960/3000.494.1080.1880@0.0.1500.960" timestamp="1609345674390" />
+  </component>
+</project>
