@@ -3,7 +3,10 @@ package com.fguyet.notifications
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
@@ -11,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var notificationManager: NotificationManager
+    private val notificationReceiver = NotificationReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +30,25 @@ class MainActivity : AppCompatActivity() {
         setNotificationButtonStates(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
 
         createNotificationChannel()
+
+        registerReceiver(notificationReceiver, IntentFilter(ACTION_UPDATE_NOTIFICATION))
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(notificationReceiver)
+        super.onDestroy()
     }
 
     private fun sendNotification() {
+        val updateIntent = Intent(ACTION_UPDATE_NOTIFICATION)
+        val updatePendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT)
+
         val notificationBuilder = getNotificationBuilder()
+            .addAction(R.drawable.ic_update, "Update Notification", updatePendingIntent)
+
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
 
-        setNotificationButtonStates(isNotifyEnabled = false, isUpdateEnabled = true, isCancelEnabled = true);
+        setNotificationButtonStates(isNotifyEnabled = false, isUpdateEnabled = true, isCancelEnabled = true)
     }
 
     private fun updateNotification() {
@@ -92,16 +109,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setNotificationButtonStates(isNotifyEnabled: Boolean, isUpdateEnabled: Boolean, isCancelEnabled: Boolean) {
+    private fun setNotificationButtonStates(isNotifyEnabled: Boolean, isUpdateEnabled: Boolean, isCancelEnabled: Boolean) {
         notify_button.isEnabled = isNotifyEnabled
         update_button.isEnabled = isUpdateEnabled
         cancel_button.isEnabled = isCancelEnabled
     }
 
-
     companion object {
         private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
         private const val NOTIFICATION_ID = 0
+        private const val ACTION_UPDATE_NOTIFICATION = "com.fguyet.notifications.ACTION_UPDATE_NOTIFICATION"
+    }
+
+    inner class NotificationReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            updateNotification()
+        }
     }
 }
 
