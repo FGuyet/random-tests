@@ -2,11 +2,14 @@ package com.fguyet.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,10 +29,25 @@ class MainActivity : AppCompatActivity() {
         mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build())
     }
 
-    private fun getNotificationBuilder() = NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
-        .setContentTitle("You've been notified!")
-        .setContentText("This is the notification text.")
-        .setSmallIcon(R.drawable.ic_android)
+    private fun getNotificationBuilder(): NotificationCompat.Builder {
+        val notificationIntent = Intent(this, MainActivity::class.java)
+
+        val notificationPendingIntent = PendingIntent.getActivity(
+            this,
+            NOTIFICATION_ID,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        return NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
+            .setContentTitle("You've been notified!")
+            .setContentText("This is the notification text.")
+            .setSmallIcon(R.drawable.ic_android)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setContentIntent(notificationPendingIntent)
+            .setAutoCancel(true)
+    }
 
     private fun createNotificationChannel() {
         mNotifyManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
