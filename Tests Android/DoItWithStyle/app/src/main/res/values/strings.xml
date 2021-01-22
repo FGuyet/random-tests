@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Do It With Style</string>
+    <string name="team_1">Team 1</string>
+    <string name="minus_button_description">Remove point from team 1</string>
+    <string name="initial_count">0</string>
+    <string name="plus_button_description">"Add a point to team 1 "</string>
+    <string name="minus_sign">-</string>
+    <string name="plus_sign">+</string>
+    <string name="team_2">Team 2</string>
+</resources>
